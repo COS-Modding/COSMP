@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <RootNamespace>COSMP</RootNamespace>
+        <AssemblyName>COSMP</AssemblyName>
+        <TargetFramework>net48</TargetFramework>
+        <Product>COSMP</Product>
+        <Version>1.0.0.0</Version>
+        <Description>Chants Of Sennaar Multiplayer Mod</Description>
+        <Copyright>Copyright © 2024</Copyright>
+        <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+	    <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+	
+    <ItemGroup>
+        <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
+        <PackageReference Include="LiteNetLib" Version="1.2.0" />
+    </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\action_pause.png" />
+		<EmbeddedResource Include="Resources\action_journal.png" />
+		<EmbeddedResource Include="Resources\action_inventory.png" />
+	</ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(ManagedDir)Assembly-CSharp.dll</HintPath>
+        </Reference>
+		<Reference Include="MMHOOK_Assembly-CSharp">
+			<HintPath>$(ManagedDir)\MMHOOK_Assembly-CSharp.dll</HintPath>
+		</Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>$(ManagedDir)UnityEngine.dll</HintPath>
+        </Reference>
+		<Reference Include="UnityEngine.AIModule">
+			<HintPath>$(ManagedDir)UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AnimationModule">
+			<HintPath>$(ManagedDir)UnityEngine.AnimationModule.dll</HintPath>
+		</Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(ManagedDir)UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(ManagedDir)UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TextRenderingModule">
+			<HintPath>$(ManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(ManagedDir)\UnityEngine.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+			<HintPath>$(ManagedDir)\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+    </ItemGroup>
+
+	<Target Name="ILRepack" AfterTargets="Build">
+		<ILRepack OutputType="$(OutputType)" MainAssembly="$(TargetFileName)" OutputAssembly="$(TargetFileName)" InputAssemblies="$(TargetFileName);LiteNetLib.dll" InternalizeExcludeAssemblies="@(InternalizeExcludeAssemblies)" WorkingDirectory="$(TargetDir)" />
+	</Target>
+</Project>
